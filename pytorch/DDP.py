@@ -53,6 +53,8 @@ def demo_basic(rank, world_size):
     model = ToyModel().to(rank)
     ddp_model = DDP(model, device_ids=[rank])
     
+    # TODO: nn.SyncBatchNorm.convert_sync_batchnorm(model)
+    
     loss = nn.MSELoss()
     optimizer = optim.SGD(ddp_model.parameters(), lr=0.001)
     
